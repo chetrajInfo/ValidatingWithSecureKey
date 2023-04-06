@@ -12,3 +12,69 @@ git branch -M main
 git push -u origin main
 …or import code from another repository
 You can initialize this repository with code from a Subversion, Mercurial, or TFS project.
+
+
+
+
+how to ignore the lib .target .idea folder to push to git repo in intellij
+To ignore specific files or folders from being pushed to a Git repository in IntelliJ IDEA, you can use a .gitignore file. Here's how:
+
+Create a file named .gitignore in the root directory of your Git repository. You can create this file using any text editor.
+
+Open the .gitignore file and add the file patterns or directory names that you want to ignore. For example, to ignore the lib, .target, and .idea folders, you can add the following lines to your .gitignore file:
+
+vbnet
+Copy code
+lib/
+.target/
+.idea/
+Note that the trailing slash (/) indicates that these entries are directories. If you want to ignore specific files with certain extensions, you can use file patterns like *.extension (e.g., *.log to ignore all log files).
+
+Save and close the .gitignore file.
+
+In IntelliJ IDEA, go to the Git tool window (View -> Tool Windows -> Git).
+
+Under the "Unversioned Files" tab, you should see the files or folders that you have added to your .gitignore file.
+
+Right-click on the files or folders you want to ignore and select "Ignore" from the context menu. This will add the selected files or folders to the .gitignore file and exclude them from being pushed to the Git repository.
+
+Commit and push your changes to the Git repository. The files or folders that you have ignored in the .gitignore file will not be included in the commit or pushed to the repository.
+
+Please note that the changes made to the .gitignore file will only affect future commits. If you have already committed and pushed files that you want to ignore, you will need to remove them from the repository using git rm --cached command before the changes in the .gitignore file take effect.
+
+
+
+
+
+how to delete .target lib and .idea form remote repo
+To delete the .target, lib, and .idea directories from a remote Git repository, you'll need to follow these steps:
+
+Open a command line interface or a terminal window.
+
+Navigate to the local directory of your Git repository on your local machine using the cd command.
+
+Verify that you are on the desired branch that you want to push changes to the remote repository.
+
+Use the git rm command followed by the -r flag to recursively remove the directories from the repository. For example:
+
+bash
+Copy code
+git rm -r .target
+git rm -r lib
+git rm -r .idea
+
+Note that git rm is used to remove files or directories from the Git repository, and the -r flag indicates that the removal
+ should be done recursively for directories.
+
+Commit the changes using git commit command with an appropriate commit message.
+
+git commit -m "Remove .target, lib, and .idea directories"
+Push the changes to the remote repository using the git push command.
+
+git push origin <branch-name>
+Replace <branch-name> with the name of the branch you want to push changes to.
+
+Confirm that the directories have been deleted from the remote repository by checking the repository on the remote Git hosting service,
+such as GitHub, GitLab, or Bitbucket.
+Please note that deleting files or directories from a remote repository will permanently remove them from the history of the repository,
+ so use caution when performing this operation. Make sure to back up any important files before deleting them from a remote repository.
