@@ -1,0 +1,34 @@
+name: Java CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Java
+      uses: actions/setup-java@v2
+      with:
+        java-version: 8
+        
+    - name: Build with Maven
+      run: mvn clean install -B
+      
+    - name: Run Checkstyle
+      run: mvn checkstyle:checkstyle
+
+      
+    - name: Run unit tests
+      run: mvn test
+      
+    - name: Generate code coverage report
+      run: mvn jacoco:report
+      
+    - name: Run code quality analysis
+      run: mvn sonar:sonar -Dsonar.projectKey=my_project_key -Dsonar.organization=my_organization -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=my_token
+
+
