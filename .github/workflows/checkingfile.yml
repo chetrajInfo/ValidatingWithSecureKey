@@ -14,6 +14,7 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: 8
+        distribution: jdk # Add the 'distribution' input and set it to 'jdk'
         
     - name: Build with Maven
       run: mvn clean install -B
@@ -21,7 +22,6 @@ jobs:
     - name: Run Checkstyle
       run: mvn checkstyle:checkstyle
 
-      
     - name: Run unit tests
       run: mvn test
       
@@ -30,5 +30,3 @@ jobs:
       
     - name: Run code quality analysis
       run: mvn sonar:sonar -Dsonar.projectKey=my_project_key -Dsonar.organization=my_organization -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=my_token
-
-
